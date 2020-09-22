@@ -3,7 +3,7 @@ const {Client, Attachment, MessageEmbed} =
 require('discord.js');
 const bot = new Discord.Client();
 
-
+const Canvas = require('canvas');
 
 const PREFIX = '^';
 
@@ -290,12 +290,21 @@ bot.on('message', message=>{
 })
 
 //Server greeting
-bot.on('guildMemberAdd', member => {
-    
-    const channel = member.guild.channels.cache.find(channel => channel.name === "┋entrance");
+bot.on('guildMemberAdd', async member => {
+    const channel = member.guild.channels.cache.find(ch => ch.name === '┋entrance');
     if (!channel) return;
+    
+    
+	const canvas = Canvas.createCanvas(700, 250);
+	const ctx = canvas.getContext('2d');
 
-    channel.send(`Welcome ${member} to **Team Leonix!** Please subscribe and follow our socials!`)
+
+    const background = await Canvas.loadImage('./canvastest.jpg');
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
+
+	channel.send(`Welcome to the server, ${member}!`, attachment);
 })
 
 //Event Listeners
