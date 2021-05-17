@@ -12,23 +12,23 @@ const cheerio = require('cheerio')
 const request = require('request')
 
 bot.on('ready', () =>{
-    console.log(`Online!`)
-    bot.user.setActivity('my prefix is ^ | ^help', {
+    console.log(`We back in business ;)`)
+    bot.user.setActivity('my prefix is ^', {
         type: "PLAYING"
     }).catch(console.log);
 
     setInterval(() => {
         const statuses = [
-            `@team.leonix | ^help`,
-            `discord.gg/leonix | ^help`,
-            `made by Scoopy! | ^help`
+            `Shaky's Bot`,
+            `Sheesh`,
+            `made by Scoopy`
         ]
 
         const status = statuses[Math.floor(Math.random() * 3)]
         bot.user.setActivity(status, {
             type: "PLAYING"
         });
-    }, 5000)
+    }, 10000)
 })
 
 //Basics
@@ -38,27 +38,15 @@ bot.on('message', message=>{
 
     switch(args[0]){
         case 'hello':
-            message.channel.send('Hello world, my name is Team Leonix and I was made by Scoopy on May 16th 2020!')
-            break;
-        case 'info' :
-            if(args[1] === 'version'){
-                message.channel.send('I am currently running on version 2.1.0');
-            }else{
-                message.channel.send('**Define what information you want you stoopid or type $help**')
-            }
+            message.channel.send('Sup, made by Scoopy');
             break;
         case 'clear':
             if(!args[1]) return message.reply('Oof, you need to define the second argument')
             message.channel.bulkDelete(args[1]);
             break;
-        case 'joke':
-            message.channel.send('What do you call a parade of rabbits hopping backwards? **A receeding hare-line**')
-            break;
-        case 'coronavirus':
-            message.channel.send('**We all are going to beat Coronavirus together, stay home and wash your hands!!!**')
-            break;
     }
 })
+
 //Embeds and User Info
 bot.on('message', message=>{
 
@@ -96,22 +84,24 @@ bot.on('message', message=>{
             const embed3 = new Discord.MessageEmbed()
             .setTitle('Help is here!')
             .setColor(0x4D0C8A)
-            .setDescription('``These are my commands! Please make sure to use the prefix, ```^``` for every command!``\n **Simple Commands**\n hello: Bot will greet you\n clear: Will clear a certain amount of messages\n joke: A joke that is updated daily\n kill: Well oops...\n $coronavirus: Something a little positive\n $info version: My current version!\n \n**Server and User Info**\n $serverinfo: Displays server information\n $userinfo: Displays user information\n \n **Extras**\n $youtube: My creators YouTube!\n $croissant: My favorrite food! :yum:\n \n ``Moderation and Music is still in development but it is so close to being finished!``\n \n *Scoopy Bot made by Scoopy himself | ver 1.1.0*')
+            .setDescription('``These are my commands! Please make sure to use the prefix, ```^``` for every command!``\n **Simple Commands**\n hello: Bot will greet you\n clear: Will clear a certain amount of messages\n joke: A joke that is updated daily\n kill: Well oops...\n $coronavirus: Something a little positive\n $info version: My current version!\n \n**Server and User Info**\n $serverinfo: Displays server information\n $userinfo: Displays user information\n \n **Extras**\n $youtube: My creators YouTube!\n $croissant: My favorrite food! :yum:\n \n ``Moderation and Music is still in development.``\n \n *Shaky\'s Bot made by Scoopy himself | ver 3.0.0*')
             message.author.send(embed3)
             message.reply("```Check your DMs!```")
             break;
         case 'serverinfo':
             message.channel.send(`**Server name**: ${message.guild.name}\n**Total members**: ${message.guild.memberCount}\n**Server created on**: ${message.guild.createdAt}\n**Server Region**: ${message.guild.region}`);
+            const embed10 = new Discord.MessageEmbed()
+            .setTitle('*Server Information')
+            .setDescription(`*Display server information for ${message.guild.name}`)
+            .setColor(0x0AF711)
+            .addField('Server Name:', message.guild.name)
+            .addField('Member Count:', message.guild.memberCount)
+            .addField('Server creation date:', message.guild.createdAt)
+            .addField('Region', messgae.guild.region)
+            .setFooter('Made by Scoopy')
+            .setTimestamp()
+            message.channel.send(embed10)
             break;
-        case 'invite':
-            const embed4 = new Discord.MessageEmbed()
-                .setTitle('My invite link...')
-                .setColor(0xC99314)
-                .addField('Link', 'https://discord.com/api/oauth2/authorize?client_id=711318203485388903&permissions=8&scope=bot')
-                .setFooter('Made by Scoopy')
-                message.reply(embed4)
-                break;
-        
     }
 })
 
@@ -191,13 +181,6 @@ bot.on('message', message=>{
                 return message.channel.send('Please @ at the end who you are wishing to slap')
             }
             return message.channel.send(message.author.username + ' **slapped the shit out of** ' + user2.username)
-            break;
-        case 'shiton':
-        let user3 = message.mentions.users.first();
-            if (!user3){
-                return message.channel.send('Please @ at the end who you are wishing for Mongraal to shit on')
-            }
-            return message.channel.send('Mongraal told you **GET SHIT ONNNN**, ' + user3.username)
             break;
         case 'rps':
             if (!args[1]){
