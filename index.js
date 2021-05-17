@@ -87,7 +87,6 @@ bot.on('message', message=>{
             message.reply("```Check your DMs!```")
             break;
         case 'serverinfo':
-            message.channel.send(`**Server name**: ${message.guild.name}\n**Total members**: ${message.guild.memberCount}\n**Server created on**: ${message.guild.createdAt}\n**Server Region**: ${message.guild.region}`);
             const embed10 = new Discord.MessageEmbed()
             .setTitle('*Server Information')
             .setDescription(`*Display server information for ${message.guild.name}`)
