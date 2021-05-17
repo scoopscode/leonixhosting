@@ -3,8 +3,6 @@ const {Client, Attachment, MessageEmbed} =
 require('discord.js');
 const bot = new Discord.Client();
 
-const Canvas = require('canvas');
-
 const PREFIX = '^';
 
 const cheerio = require('cheerio')
@@ -270,24 +268,6 @@ bot.on('message', message=>{
             return message.reply('You rolled a dice and got a '+number2)
         
     }
-})
-
-//Server greeting
-bot.on('guildMemberAdd', async member => {
-    const channel = member.guild.channels.cache.find(ch => ch.name === '┋entrance');
-    if (!channel) return;
-    
-    
-	const canvas = Canvas.createCanvas(700, 250);
-	const ctx = canvas.getContext('2d');
-
-
-    const background = await Canvas.loadImage('./canvastest.jpg');
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
-
-	channel.send(`Welcome to the server, ${member}!`, attachment);
 })
 
 //Event Listeners
