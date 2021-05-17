@@ -95,7 +95,7 @@ bot.on('message', message=>{
             .addField('Server Name:', message.guild.name)
             .addField('Member Count:', message.guild.memberCount)
             .addField('Server creation date:', message.guild.createdAt)
-            .addField('Region', messgae.guild.region)
+            .addField('Region', message.guild.region)
             .setFooter('Made by Scoopy')
             .setTimestamp()
             message.channel.send(embed10)
