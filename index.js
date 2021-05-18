@@ -294,7 +294,7 @@ bot.on('message', message=>{
 
 bot.on('message', message=>{
     if(message.content === 'Hello'){
-        message.reply('Hi, my names Team Leonix. Nice to meet you!');
+        message.reply('Hi, my names Shaky Bot. Nice to meet you!');
 
     }
 })
